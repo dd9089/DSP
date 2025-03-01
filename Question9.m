@@ -3,10 +3,16 @@ clear all
 Trep = 1e-6;
 t = [0:Trep:0.01];
 ftone = 1000;
-fs = ftone * 4;
+fs = 1500;
 Ts = 1/fs;
 
-xt = cos(2*pi*ftone*t);
+A=1e-3;
+raiseindex=max(find(t<A));
+decayindex=max(find(t<2*A));
+xt=zeros(size(t));
+xt(1:raiseindex)=t(1:raiseindex)/A;
+xt(raiseindex+1:decayindex)=1-t(1:raiseindex)/A;
+
 %% Continuous Signal
 subplot(6,1,1);
 plot(t, xt);grid
@@ -36,7 +42,6 @@ xs = xt .* y;
 %% Fourier transform of Xs
 Xsjw = fft(xs, length(t));
 Xsjw = fftshift(Xsjw);
-Xsjw(find(abs(Xsjw) < 2)) = 0; 
 
 subplot(6,1,3);
 plot(faxis, abs(Xsjw));grid

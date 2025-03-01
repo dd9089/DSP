@@ -3,10 +3,10 @@ clear all
 Trep = 1e-6;
 t = [0:Trep:0.01];
 ftone = 1000;
-fs = ftone * 4;
+fs = ftone * 9;
 Ts = 1/fs;
 
-xt = cos(2*pi*ftone*t);
+xt = cos(2*pi*ftone*t) .* cos(2*pi*3*ftone*t);
 %% Continuous Signal
 subplot(6,1,1);
 plot(t, xt);grid

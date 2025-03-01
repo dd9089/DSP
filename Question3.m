@@ -3,7 +3,7 @@ clear all
 Trep = 1e-6;
 t = [0:Trep:0.01];
 ftone = 1000;
-fs = ftone * 4;
+fs = 1500;
 Ts = 1/fs;
 
 xt = cos(2*pi*ftone*t);
