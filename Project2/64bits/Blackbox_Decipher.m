@@ -33,3 +33,25 @@ if (sys3)
 else
     disp("System3 is not linear");
 end
+
+
+%----------------B---------------------
+impulse = [1, zeros(1,99)];
+output2 = system2(impulse);
+
+nonzero_idx = find(abs(output2) > 1e-5);
+if nonzero_idx(end) < length(output2)
+    disp("System2 is FIR");
+else
+    disp("System2 is IIR");
+end
+
+output3 = system3(impulse);
+nonzero_idx = find(abs(output3) > 1e-5);
+if nonzero_idx(end) < length(output3)
+    disp("System3 is FIR");
+else
+    disp("System3 is IIR");
+end
+
+
